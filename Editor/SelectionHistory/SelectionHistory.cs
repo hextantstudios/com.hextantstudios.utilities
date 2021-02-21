@@ -16,10 +16,10 @@ namespace Hextant
         [InitializeOnLoadMethod]
         static void OnLoad() => Initialize();
 
-        [MenuItem( "Window/Selection History/Back _F1" )] // F1
+        [MenuItem( "Edit/Selection/History Back _F1" )] // F1
         static void OnBack() => instance.Back();
 
-        [MenuItem( "Window/Selection History/Forward #F1" )] // Shift + F1
+        [MenuItem( "Edit/Selection/History Forward #F1" )] // Shift + F1
         static void OnForward() => instance.Forward();
 
         // Move backwards one entry in the history.
