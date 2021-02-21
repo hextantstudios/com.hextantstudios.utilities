@@ -24,6 +24,10 @@ A `ScriptableObject`-based singleton that can be used for GUI-less editor plug-i
 
 ## SelectionHistory
 
-This editor plug-in derives from the `EditorSingleton` class and maintains a small history of recently selected objects that can be moved backward or forward through by pressing `F1` and `Shift+F1` (customize in *Edit/Shortcuts*).
+This editor plug-in derives from the `EditorSingleton` class allowing it to maintain a small history of recently selected objects that can be moved backward or forward through by pressing `F1` and `Shift+F1` (customize in *Edit/Shortcuts*).
 
 * See [Selection History for Unity's Editor](https://hextantstudios.com/unity-selection-history/) for additional details.
+
+## LogCompileTimes
+
+This editor plug-in also derives from the `EditorSingleton` class allowing it to maintain timers that track script compilation and domain reload times. It can be used to spot script-related slow-downs over time.
