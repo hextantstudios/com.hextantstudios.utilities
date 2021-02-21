@@ -1,0 +1,58 @@
+[lfs]
+	access = basic
+	locksverify = true
+[alias]
+    # Stages all files recursively.
+    add-all = "add -A"
+    # Add all and commit:
+    commit-all = "!git add -A;git commit"    
+    # Unstages the specified staged files:
+    unstage = "reset HEAD --"
+    # Discard change to the specifed file or all modified files.
+    discard = checkout --
+    # Ammend previous commit with currently staged files:
+    # Note: This should only be used for changes that have not been pused.
+    amend = "commit --amend"
+    # Uncommit last commit (changes committed will become uncommitted local modifications).
+    # Note: This should only be used for changes that have not been pused, otherwise see "revert".
+    uncommit-last = "reset --soft HEAD~"
+    # Short git status output:
+    s = "status -s"
+    # Launch difftool for a single file or all modified files:
+    d = "difftool"
+    # Log pretty listing of previous commits:
+    history = "log --graph --decorate --all --pretty=format:'%h %<(15,trunc)%C(bold blue)%an %<(15,trunc)%C(bold green)%ar %<(70,trunc)%C(bold yellow)%s %w(0,0,39)%+d%C(reset)'"
+    # Log the last commit:
+    last = "log -1 HEAD"
+    # Checks to see if the specified file is tracked by LFS:
+    # Note: Assumes usage of our .gitattributes file.
+    is-lfs = "check-attr lfs"
+    # Log all LFS-tracked files that are staged:
+    ls-lfs = "!git lfs status | grep LFS:"
+    # Log all non-LFS-tracked files that are staged:
+    ls-non-lfs = "!git lfs status | grep Git:"
+    # Log files in repository (not part of LFS) by file size sorted by largest first:
+    ls-large = "!git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | sed -n 's/^blob //p' | sort --numeric-sort --key=2 | cut -c 1-12,41- | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
+    # Verbose branch listing:
+    branches = "branch -v -a"
+    # Verbose remotes listing:
+    remotes = "remote -v"
+    # Shows commits that have not been pushed.
+    pending-push = log @{push}..
+    # Pushes to all remotes.
+	push-all = !git remote | xargs -L1 git push --all
+    # Reverts all changes to mimic origin/master.
+    revert-to-master = "!git fetch origin;git reset --hard origin/master;git clean -ffdx"
+    # Edits the user's config file.
+    edit-config = config --global -e
+
+[mergetool "unityyamlmerge"]
+    trustExitCode = false
+    keepBackup = false
+    cmd = 'UnityYAMLMerge.exe' merge -p \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\"
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

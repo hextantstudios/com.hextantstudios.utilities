@@ -1,0 +1,16 @@
+{
+  "name": "com.hextantstudios.utilities",
+  "version": "0.1.0",
+  "displayName": "Hextant Utilities",
+  "description": "This packages includes helpful runtime and editor additions to Unity.",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "unity": "2020.1",
+  "keywords": [
+    "Utilities"
+  ],
+  "author": {
+    "name": "Hextant Studios",
+    "email": "Doug@HextantStudios.com",
+    "url": "https://HextantStudios.com"
+  }
+}
