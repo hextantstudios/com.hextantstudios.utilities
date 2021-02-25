@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Hextant
+namespace Hextant.Editor
 {
     // Maintains a small history of recently selected objects that can be moved
     // backward or forward through similar to a web browser.

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Compilation;
 
-namespace Hextant
+namespace Hextant.Editor
 {
     // Logs the time taken to perform script compilations and domain reloads.
     public sealed class LogCompileTimes : EditorSingleton<LogCompileTimes>
@@ -54,6 +54,7 @@ namespace Hextant
             Debug.Log( $"Script compilation: {compilation.TotalSeconds:F3}s, " +
                 $"Domain reload: {reload.TotalSeconds:F3}s, " +
                 $"Total: {( compilation + reload ).TotalSeconds:F3}s " );
+            _compilationTime = 0;
         }
 
         // The time (in ticks) when the script compilation started.

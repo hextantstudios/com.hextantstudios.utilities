@@ -1,6 +1,6 @@
 {
     "name": "Hextant Utilities",
-    "rootNamespace": "",
+    "rootNamespace": "Hextant.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"
