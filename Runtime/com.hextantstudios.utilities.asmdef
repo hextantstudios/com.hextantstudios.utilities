@@ -1,12 +1,8 @@
 {
-    "name": "Hextant Utilities",
-    "rootNamespace": "Hextant.Editor",
-    "references": [
-        "GUID:5cb2ec59697a4f9438a8f30dc412b4a9"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "name": "com.hextantstudios.utilities",
+    "rootNamespace": "Hextant",
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
