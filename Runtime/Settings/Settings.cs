@@ -11,7 +11,7 @@ namespace Hextant
     // Base class for project/users settings. Use the [Settings] attribute to
     // specify its usage, display path, and filename.
     // * Settings are stored in Assets/Settings/ folder.
-    // * Important! The user settings folder Assets/Settings/Editor/User/ should be
+    // * Important! The user settings folder Assets/Settings/Editor/User/ must be
     //   excluded from source control.
     // * User settings will be placed in a subdirectory named the same as
     //   the current project folder so that shallow cloning (symbolic links to
@@ -77,6 +77,7 @@ namespace Hextant
             Directory.CreateDirectory( Path.Combine(
                 Directory.GetCurrentDirectory(),
                 Path.GetDirectoryName( path ) ) );
+
             // Create the asset only in the editor.
             AssetDatabase.CreateAsset( _instance, path );
 #endif

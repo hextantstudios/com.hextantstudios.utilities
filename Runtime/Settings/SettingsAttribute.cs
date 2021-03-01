@@ -8,13 +8,14 @@ namespace Hextant
     // filename. If the filename is not set, the type's name is used.
     public sealed class SettingsAttribute : Attribute
     {
-        public SettingsAttribute( SettingsUsage usage, string displayPath,
+        public SettingsAttribute( SettingsUsage usage, string displayPath = null,
             string filename = null )
         {
             this.usage = usage;
             this.filename = filename;
-            this.displayPath = ( usage == SettingsUsage.EditorUser ?
-                "Preferences/" : "Project/" ) + displayPath;
+            this.displayPath = displayPath != null ?
+                ( ( usage == SettingsUsage.EditorUser ?
+                "Preferences/" : "Project/" ) + displayPath ) : null;
         }
 
         // The type of settings (how and when they are used).

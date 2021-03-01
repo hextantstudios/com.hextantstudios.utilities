@@ -33,3 +33,11 @@ This editor plug-in derives from the `EditorSingleton` class allowing it to main
 This simple plug-in for Unity's Editor logs how long it takes to compile script changes and perform domain reloads to quickly spot potential issues that can affect iteration times.
 
 * See [Log Compile Times in Unity's Editor](https://hextantstudios.com/unity-log-compile-times/) for additional details.
+
+## Settings
+
+A `ScriptableObject`-based singleton that can be used to store project-wide or user-specific settings for editor plug-ins or project-wide settings for use at runtime. Settings can be easily exposed to the *Edit/Preferences* and *Edit/Project Settings* dialogs or modified manually by plug-ins. 
+
+*Note:* The user settings folder `Assets/Settings/Editor/User/` should be excluded from source control.
+
+* See [Custom Runtime and Editor Settings in Unity](https://HextantStudios.com/unity-custom-settings)
