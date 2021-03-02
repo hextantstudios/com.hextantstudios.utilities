@@ -1,5 +1,6 @@
 // Copyright 2021 by Hextant Studios. https://HextantStudios.com
 // This work is licensed under CC BY 4.0. http://creativecommons.org/licenses/by/4.0/
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -110,6 +111,9 @@ namespace Hextant
                 typeof( T ).GetCustomAttribute<SettingsAttribute>( true );
         static SettingsAttribute _attribute;
 
+        // Called to validate settings changes.
+        protected virtual void OnValidate() { }
+
 #if UNITY_EDITOR
         // Sets the specified setting to the desired value and marks the settings
         // so that it will be saved.
@@ -121,11 +125,8 @@ namespace Hextant
             SetDirty();
         }
 
-        // Called to validate settings changes.
-        protected virtual void OnValidate() { }
-
         // Marks the settings dirty so that it will be saved.
-        new void SetDirty() => EditorUtility.SetDirty( this );
+        protected new void SetDirty() => EditorUtility.SetDirty( this );
 
         // The directory name of the current project folder.
         static string GetProjectFolderName()
@@ -134,5 +135,27 @@ namespace Hextant
             return path[ path.Length - 2 ];
         }
 #endif
+
+        // Base class for settings contained by a Settings<T> instance.
+        public abstract class SubSettings
+        {
+            public SubSettings( T settings ) => _settings = settings;
+            [NonSerialized] T _settings;
+
+            // Called when a setting is modified.
+            protected virtual void OnValidate() { }
+
+#if UNITY_EDITOR
+            // Sets the specified setting to the desired value and marks the settings
+            // so that it will be saved.
+            protected void Set<S>( ref S setting, S value )
+            {
+                if( EqualityComparer<S>.Default.Equals( setting, value ) ) return;
+                setting = value;
+                OnValidate();
+                _settings.SetDirty();
+            }
+#endif
+        }
     }
 }
