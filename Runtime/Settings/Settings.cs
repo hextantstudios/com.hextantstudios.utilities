@@ -1,8 +1,8 @@
 // Copyright 2021 by Hextant Studios. https://HextantStudios.com
 // This work is licensed under CC BY 4.0. http://creativecommons.org/licenses/by/4.0/
 using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -137,11 +137,9 @@ namespace Hextant
 #endif
 
         // Base class for settings contained by a Settings<T> instance.
+        [Serializable]
         public abstract class SubSettings
         {
-            public SubSettings( T settings ) => this.settings = settings;
-            [HideInInspector] public T settings;
-
             // Called when a setting is modified.
             protected virtual void OnValidate() { }
 
@@ -153,7 +151,7 @@ namespace Hextant
                 if( EqualityComparer<S>.Default.Equals( setting, value ) ) return;
                 setting = value;
                 OnValidate();
-                settings.SetDirty();
+                instance.SetDirty();
             }
 #endif
         }
