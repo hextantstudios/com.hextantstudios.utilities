@@ -139,21 +139,21 @@ namespace Hextant
         // Base class for settings contained by a Settings<T> instance.
         public abstract class SubSettings
         {
-            public SubSettings( T settings ) => _settings = settings;
-            [NonSerialized] T _settings;
+            public SubSettings( T settings ) => this.settings = settings;
+            [HideInInspector] public T settings;
 
             // Called when a setting is modified.
             protected virtual void OnValidate() { }
 
 #if UNITY_EDITOR
             // Sets the specified setting to the desired value and marks the settings
-            // so that it will be saved.
+            // instance so that it will be saved.
             protected void Set<S>( ref S setting, S value )
             {
                 if( EqualityComparer<S>.Default.Equals( setting, value ) ) return;
                 setting = value;
                 OnValidate();
-                _settings.SetDirty();
+                settings.SetDirty();
             }
 #endif
         }
