@@ -38,7 +38,7 @@ This simple plug-in for Unity's Editor logs how long it takes to compile script 
 
 A `ScriptableObject`-based singleton that can be used to store project-wide or user-specific settings for editor plug-ins or project-wide settings for use at runtime. Settings can be easily exposed to the *Edit/Preferences* and *Edit/Project Settings* dialogs or modified manually by plug-ins. 
 
-**Notes:* *
+*Notes:*
 * The derived settings class *must* be placed in a file with the same name as the class (`ScriptableObject` requirement).
 * The user settings folder `Assets/Settings/Editor/User/` should be excluded from source control.
 
