@@ -1,8 +1,8 @@
 // Copyright 2021 by Hextant Studios. https://HextantStudios.com
 // This work is licensed under CC BY 4.0. http://creativecommons.org/licenses/by/4.0/
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -11,8 +11,9 @@ namespace Hextant
 {
     // Base class for project/users settings. Use the [Settings] attribute to
     // specify its usage, display path, and filename.
+    // * Derived classes *must* be placed in a file with the same name as the class.
     // * Settings are stored in Assets/Settings/ folder.
-    // * Important! The user settings folder Assets/Settings/Editor/User/ must be
+    // * The user settings folder Assets/Settings/Editor/User/ *must* be
     //   excluded from source control.
     // * User settings will be placed in a subdirectory named the same as
     //   the current project folder so that shallow cloning (symbolic links to
