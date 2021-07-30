@@ -34,11 +34,8 @@ namespace Hextant
 
             // Verify there was a [Settings] attribute.
             if( attribute == null )
-            {
-                Debug.LogError( "[Settings] attribute missing for type: " +
-                    typeof( T ).Name );
-                return null;
-            }
+                throw new System.InvalidOperationException(
+                    "[Settings] attribute missing for type: " + typeof( T ).Name );
 
             // Attempt to load the settings asset.
             var filename = attribute.filename ?? typeof( T ).Name;
@@ -74,6 +71,17 @@ namespace Hextant
             _instance = CreateInstance<T>();
 
 #if UNITY_EDITOR
+            // Verify the derived class is in a file with the same name.
+            var script = MonoScript.FromScriptableObject( _instance );
+            if( script == null || script.name != typeof( T ).Name )
+            {
+                DestroyImmediate( _instance );
+                _instance = null;
+                throw new System.InvalidOperationException(
+                    "Settings-derived class and filename must match: " +
+                        typeof( T ).Name );
+            }
+
             // Create a new settings instance if it was not found.
             // Create the directory as Unity does not do this itself.
             Directory.CreateDirectory( Path.Combine(
