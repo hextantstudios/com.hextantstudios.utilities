@@ -98,11 +98,13 @@ namespace Hextant.Editor
             IsNull( a ) || AreEqual( a, b );
 
         // True if the Object array is null or if all entries are null.
-        static bool IsNull( Object[] objects )
+        static bool IsNull( Object[] objects ) 
         {
             if( objects != null )
-                foreach( var obj in objects )
-                    if( obj != null ) return false;
+                if( objects.Length == 0 ) return false; // Empty selections are not-null.
+                else
+                    foreach( var obj in objects )
+                        if( obj != null ) return false;
             return true;
         }
 

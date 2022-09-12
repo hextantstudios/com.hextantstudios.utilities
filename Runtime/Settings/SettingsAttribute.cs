@@ -6,6 +6,8 @@ namespace Hextant
 {
     // Specifies the settings type, path in the settings UI, and optionally its
     // filename. If the filename is not set, the type's name is used.
+    // Note: The displayPath can use a path separator '/' to create a Settings instance
+    // that is grouped or nested under another. ex: "Services/My Project Settings"
     public sealed class SettingsAttribute : Attribute
     {
         public SettingsAttribute( SettingsUsage usage, string displayPath = null,
